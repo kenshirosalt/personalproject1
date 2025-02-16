@@ -1,0 +1,21 @@
+p {
+    color: green
+}
+h1, h2, h3, h4, h5, h6 {
+    border: 3px dotted green;
+}
+.red_border {
+    border: 5px solid red;
+    border-radius: 30%;
+}
+#special_h6 {
+    font-size: 100px;
+}
+@font-face {
+    font-family: Papyrus;
+    src: url(papyrus.ttf);
+}
+
+div {
+    font-family: Papyrus;
+}
