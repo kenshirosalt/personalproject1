@@ -1,0 +1,26 @@
+<html>
+
+    <head>
+        <title>This is a website</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='websitestyle.css')}}"
+    </head>
+
+    <body>
+        <nav>
+            <a href="/home", "hello_world">Home</a>
+            <a href="/posts", "posts">Posts</a>
+            <a href="/createacc", "createacc">Create Account</a>
+            <a href="/createposts", "createposts">Create Posts</a>
+            <a href="/login", "login">Login</a>
+
+            <h1>This is a home page.</h1>
+            <p>This is a sentence</p>
+
+        </nav>
+        <main>
+            <section>
+                {% block content %}{% endblock %}
+            </section>
+        </main>
+    </body>
+</html>

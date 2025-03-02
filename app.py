@@ -21,7 +21,7 @@ def login():
 
 
 
-app = Flask(__name__, template_folder=os.getcwd())
+app = Flask(__name__, template_folder=os.getcwd(), static_folder=os.getcwd())
 
 app.add_url_rule("/home", "hello_world", hello_world)
 app.add_url_rule("/cat", "cat", cat_page)
