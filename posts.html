@@ -1,16 +1,8 @@
-<html>
-    <head>
-        <title>This is a website</title>
-    </head>
+{% extends 'base.html' %}
 
-
-    {% extends 'base.html' %}
-
-    {% block content %}
-       
-    {% endblock %}
-</html>
-
-https://www.youtube.com/shorts/wGYT-9XTr9o
-
-https://www.youtube.com/watch?v=DE8V_lHf6Bc
+{% block content %}
+    <h1>{{blog_data.title}}</h1>
+    <p>{{blog_data.author}}</p>
+    <p>{{blog_data.content}}</p>
+    <a href="">Read more</a>
+{% endblock %}
