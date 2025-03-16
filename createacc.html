@@ -1,14 +1,17 @@
-<html>
-    <head>
-        <title>This is a website</title>
-    </head>
+{% extends 'base.html' %}
 
-
-    {% extends 'base.html' %}
-
-    {% block content %}
-       
-    {% endblock %}
-
-
-</html>
+{% block content %}
+    <form action='/createacc' method="SIGNIN">
+        <div>
+            <label>Username:</label>
+            <input type="text" name="User" value="Name">
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="text" name="Password" value="Name">
+        </div>
+        <div>
+            <input type="submit" value="Submit post">
+        </div>
+    </form>
+{% endblock %}

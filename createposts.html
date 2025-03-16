@@ -1,14 +1,18 @@
-<html>
+{% extends 'base.html' %}
 
-    <head>
-        <title>This is a website</title>
-    </head>
-
-
-    {% extends 'base.html' %}
-
-    {% block content %}
-       
-    {% endblock %}
-
-</html>
+{% block content %}
+    <h1>this is a create post</h1>
+    <form action='/createposts' method="POST">
+        <div>
+            <label>Title:</label>
+            <input type="text" name="title" value="Title">
+        </div>
+        <div>
+            <label>Content:</label>
+            <textarea name="content">Default content</textarea>
+        </div>
+        <div>
+            <input type="submit" value="Submit post">
+        </div>
+    </form>
+{% endblock %}

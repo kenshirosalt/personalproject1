@@ -4,6 +4,6 @@
     <h1>This is the show posts.</h1>
     {% for p in blog_posts %}
         <h1>{{p.title}}</h1>
-        <a href="">Read more</a>
+        <a href="/blog?pid={{p.pid}}">Read more</a>
     {% endfor %}
 {% endblock %}
