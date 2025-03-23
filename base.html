@@ -7,14 +7,27 @@
 
     <body>
         <nav>
-            <a href="/home", "hello_world">Home</a>
-            <a href="/blog", "blog">Posts</a>
-            <a href="/createacc", "createacc">Create Account</a>
-            <a href="/createposts", "createposts">Create Posts</a>
-            <a href="/login", "login">Login</a>
+            <div>
+                <a href="/home", "hello_world">Home</a>
+            </div>
+            <div>
+                <a href="/blog", "blog">Posts</a>
+                <a href="/createacc", "createacc">Create Account</a>
+                <a href="/createposts", "createposts">Create Posts</a>
+                {% if session['uid'] %}
+                    <form action='/logout' method="POST">
+                        <button>Logout</button>
+                    </form>
+                {% else %}
+                    <a href="/login", "login">Login</a>
+                {% endif %}
+            </div>
         </nav>
         <main>
             <section>
+                {% for message in get_flashed_messages() %}
+                    <div class="flash">{{ message }}</div>
+                {% endfor %}
                 {% block content %}{% endblock %}
             </section>
         </main>

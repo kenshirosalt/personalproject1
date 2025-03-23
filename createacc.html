@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <form action='/createacc' method="SIGNIN">
+    <form action='/createacc' method="POST">
         <div>
             <label>Username:</label>
-            <input type="text" name="User" value="Name">
+            <input type="text" name="name" value="">
         </div>
         <div>
             <label>Password:</label>
-            <input type="text" name="Password" value="Name">
+            <input type="text" name="password" value="password">
         </div>
         <div>
             <input type="submit" value="Submit post">

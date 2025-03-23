@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session, flash
 import os
 
 
-https://www.reddit.com/r/reddeadredemption/comments/1gfu7ws/i_have_found_a_solution_for_access_violation_for/
 
-users = [{"uid": 0, "name": tim, "password": passw}]
+
+users = [{"uid": 0, "name": "tim", "password": "passw"},
+        {"uid": 0, "name": "jim", "password": "passw1"}]
 
 blog_posts = [
                 {"pid": 0,
@@ -56,20 +57,42 @@ def createacc():
     return render_template("createacc.html")
 
 def login():
-    return render_template("login.html")
+    if request.method == "POST":
+        name = request.form["name"]
+        password = request.form["password"]
+
+        error = "incorrect"
+        uid = -1
+        for user in users:
+            if user["name"] == name and user['password'] == password:
+                error = None
+                uid = user['uid']
+
+        if error is None:
+            session.clear()
+            session["uid"] = str(uid)
+            return redirect('/home')
+        else:
+            flash(error)
+            return render_template("login.html")
+    else:
+        return render_template("login.html")
 
 
-
+def logout():
+    session.clear()
+    return redirect("/home")
 
 
 app = Flask(__name__, template_folder=os.getcwd(), static_folder=os.getcwd())
+app.config.from_mapping(SECRET_KEY='my_dev_key')
 
 app.add_url_rule("/home", "hello_world", hello_world)
 app.add_url_rule("/blog", "blog", cat_page)
 app.add_url_rule("/posts", "posts", posts)
-app.add_url_rule("/login", "login", login)
+app.add_url_rule("/login", "login", login, methods=["GET", "POST"])
 app.add_url_rule("/createacc", "createacc", createacc)
 app.add_url_rule("/createposts", "createpost", createposts, methods=["GET", "POST"])
-
+app.add_url_rule("/logout", "logout", logout, methods=["POST"])
 
 app.run()
