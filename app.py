@@ -5,7 +5,8 @@ import os
 
 
 users = [{"uid": 0, "name": "tim", "password": "passw"},
-        {"uid": 0, "name": "jim", "password": "passw1"}]
+        {"uid": 0, "name": "jim", "password": "passw1"},
+        {"uid": 0, "name": "kate", "password": "passw3"}]
 
 blog_posts = [
                 {"pid": 0,
