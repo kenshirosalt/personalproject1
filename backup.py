@@ -1,10 +1,7 @@
-from flask import Flask, render_template, request, redirect, session, flash, g
+from flask import Flask, render_template, request, redirect, session, flash
 import os
-import sqlite3
-def get_db():
-    if not 'db' in g:
-        g.db = sqlite3.connect("blog.db")
-    return g.db
+
+
 
 
 users = [{"uid": 0, "name": "tim", "password": "passw"},
@@ -67,13 +64,10 @@ def login():
 
         error = "incorrect"
         uid = -1
-        db = get_db()
-        results = db.execute("SELECT rowid, username, password FROM account").fetchall()
-        for row in results:
-            if row[1] == name and row[2] == password:
+        for user in users:
+            if user["name"] == name and user['password'] == password:
                 error = None
-                uid = row[0]
-
+                uid = user['uid']
 
         if error is None:
             session.clear()
@@ -90,11 +84,7 @@ def logout():
     session.clear()
     return redirect("/home")
 
-def account():
-    if request.method == "POST":
-        #insert new row
-        #commit
-    return render_template("account.html")
+
 app = Flask(__name__, template_folder=os.getcwd(), static_folder=os.getcwd())
 app.config.from_mapping(SECRET_KEY='my_dev_key')
 

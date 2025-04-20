@@ -33,4 +33,8 @@ result = db.execute("SELECT name, title, content FROM account JOIN posts ON auth
 print(result)
 
 db.execute("DROP TABLE IF EXISTS comments")
-db.execute("CREATE TABLE 
+db.execute("CREATE TABLE comments (author_id INTEGER, content TEXT, likes INTEGER)")
+db.execute("INSERT INTO comments (author_id, content, likes) VALUES (1, 'Comment A', 100), (2, 'Comment B', 200), (2, 'Comment C', 300)")
+
+result = db.execute("SELECT name, content FROM comments JOIN account ON author_id = account.rowid").fetchall()
+print(result)
